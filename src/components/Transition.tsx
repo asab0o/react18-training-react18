@@ -1,4 +1,5 @@
-import { useState, startTransition } from "react";
+// isPendingも使いたいのでstartTransitionではなくuseTransition
+import { useState, useTransition } from "react";
 import { Avatar } from "./Avatar";
 
 type Task = {
@@ -33,6 +34,7 @@ const filteringAssignee = (assignee: string) => {
   }
 
 export const Transition = () => {
+    const [isPending, startTransition] = useTransition();
     const [selectedAssignee, setSelectedAssignee] = useState<string>('');
     const [taskList, setTaskList] = useState<Task[]>(tasks);
 
@@ -54,7 +56,7 @@ export const Transition = () => {
             <br />
             <button onClick={() => onClickAssignee('')}>Resset</button>
             {taskList.map((task) => (
-                <div key={task.id} style={{ width: '300px', margin: 'auto', background: 'lavender' }}>
+                <div key={task.id} style={{ width: '300px', margin: 'auto', background: 'lavender', opacity: isPending ? 0.5 : 1}}>
                     <p>title: {task.title}</p>
                     <p>member: {task.assignee}</p>
                 </div>
