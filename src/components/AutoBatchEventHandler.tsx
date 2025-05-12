@@ -2,7 +2,6 @@ import { useState } from "react";
 import { flushSync } from "react-dom";
 
 export const AutoBatchEventHandler = () => {
-  console.log('AutoBatchEventHandler!!');
 
   const [state1, setState1] = useState<number>(0);
   const [state2, setState2] = useState<number>(0);
